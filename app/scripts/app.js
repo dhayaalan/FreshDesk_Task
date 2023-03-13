@@ -7,19 +7,23 @@ async function init() {
   client.events.on('app.activated', search());
 }
 
-// async function userAuth(fs_domain, fs_key) {
-//   let fs_domain = fs_domain;
-//   let fs_key = fs_key;
-//   console.log(fs_domain, 'domain', fs_key, 'key');
-//   try {
-//     $db.get(fs_domain, fs_key);
-//   } catch (err) {
-//     $db.set(fs_domain, fs_key);
-//     console.log(err);
-//   }
-// }
+async function userAuth() {
+  let fdomain = `${fs_domain}`;
+  let fkey = `${fs_key}`;
+  console.log(fdomain, 'domain', fkey, 'key');
+  try {
+    console.log(fdomain, 'fdomain', fkey, 'fkey');
+    $db.get(fdomain, fkey);
+  } catch (err) {
+    console.log(fdomain, 'fdomain', fkey, 'fkey');
+    $db.set(fdomain, fkey);
+    console.log(err);
+  }
+  return fs_domain, fs_key;
+}
 
 async function search() {
+  let key = document.getElementById('api').value;
   let search = document.getElementById('search-text').value;
   console.log(search, 'search');
   let result = await fetch(
@@ -29,7 +33,7 @@ async function search() {
       timeout: 0,
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Basic aldSUG9kV2EzZWVRZ0JoY21xMjou',
+        Authorization: `Basic ${key}`,
       },
     }
   );
