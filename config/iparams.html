@@ -50,7 +50,9 @@
       </fw-input>
     </div>
     <div style="margin-top: 10px">
-      <fw-button color="primary" id="validate">validate</fw-button>
+      <fw-button color="primary" id="validate" fwclick="userAuth()"
+        >validate</fw-button
+      >
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -69,16 +71,25 @@
       };
 
       function getInput() {
-        console.log($(data.fs_domain).val(), 'snake');
+        console.log(
+          $(data.fs_domain).val(),
+          'domain',
+          $(data.fs_api).val(),
+          'key'
+        );
         return {
           fs_domain: $(data.fs_domain).val(),
           fs_api: $(data.fs_api).val(),
         };
-        console.log($(data.fs_domain).val(), 'snake');
+        console.log(
+          $(data.fs_domain).val(),
+          'domain',
+          $(data.fs_api).val(),
+          'key'
+        );
       }
 
       function getConfigs(configs) {
-        console.log('snake');
         window.configs = configs;
         ls.isFsValid = true;
         $(data.fs_domain).val(configs.fs_domain);
@@ -88,7 +99,6 @@
 
       function validate() {
         let isValid = true;
-        return isValid && ls.isFsValid;
         return isValid;
       }
 
