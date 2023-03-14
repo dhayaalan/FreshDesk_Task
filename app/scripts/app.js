@@ -8,35 +8,31 @@ async function init() {
 }
 
 async function userAuth() {
-  let fdomain = `${fs_domain}`;
-  let fkey = `${fs_key}`;
-  console.log(fdomain, 'domain', fkey, 'key');
-  try {
-    console.log(fdomain, 'fdomain', fkey, 'fkey');
-    $db.get(fdomain, fkey);
-  } catch (err) {
-    console.log(fdomain, 'fdomain', fkey, 'fkey');
-    $db.set(fdomain, fkey);
-    console.log(err);
-  }
-  return fs_domain, fs_key;
+  let res = await client.iparams.get().then(
+    function (data) {
+      res = data.fs_domain;
+      res = data.fs_key;
+      console.log(res.fs_domain, 'domain', res.fs_key, 'key');
+      return res;
+    },
+    function (error) {
+      console.log(error);
+    }
+  );
 }
 
 async function search() {
   let key = document.getElementById('api').value;
   let search = document.getElementById('search-text').value;
   console.log(search, 'search');
-  let result = await fetch(
-    'https://dhayaalanservicedesk.freshservice.com/api/v2/tickets',
-    {
-      method: 'GET',
-      timeout: 0,
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Basic ${key}`,
-      },
-    }
-  );
+  let result = await fetch(`${res.fs_domain}/api/v2/tickets`, {
+    method: 'GET',
+    timeout: 0,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Basic ${res.fs_key}`,
+    },
+  });
   let data = await result.json();
   console.log(data, 'error');
   for (let i of data.tickets) {
