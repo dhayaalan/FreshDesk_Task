@@ -1,11 +1,8 @@
-// async function userAuth() {
-//   client.iparams.get().then(
-//     function (data) {
-//       let domain = data.fs_domain;
-//       let key = data.fs_key;
-//     },
-//     function (error) {
-//       console.log(error);
-//     }
-//   );
-// }
+let getauthvalues = (authInfo) => {
+  var url = authInfo.fs_domain + '';
+  var headers = {
+    Authorization: btoa(authInfo.fs_key),
+  };
+  console.log(url, headers);
+  return client.request.get(url, { headers });
+};

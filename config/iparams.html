@@ -1,114 +1,192 @@
 <html>
-  <head>
-    <title>index</title>
+<head>
+  <title>sample</title>
+  <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://static.freshdev.io/fdk/2.0/assets/freshsales.css"/>
+    <link rel="stylesheet" type="text/css" href="./assets/iparams.css" />
     <link
       rel="stylesheet"
       type="text/css"
-      href="https://static.freshdev.io/fdk/2.0/assets/freshdesk.css"
+      href="https://static.freshdev.io/fdk/2.0/assets/freshworks_crm.css"
     />
-    <script src="node_modules/@freshworks/crayons/dist/crayons/crayons.js"></script>
-    <script
-      type="module"
-      src="node_modules/@freshworks/crayons/dist/crayons/crayons.esm.js"
-    ></script>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/@freshworks/crayons@v4/css/crayons-min.css"
-    />
-    <script
-      type="module"
-      src="https://unpkg.com/@freshworks/crayons@v4/dist/crayons/crayons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/@freshworks/crayons@v4/dist/crayons/crayons.js"
-    ></script>
     <link rel="stylesheet" type="text/css" href="./assets/iparams.css" />
-    <style>
-      /* Put your custom style here */
-    </style>
-  </head>
-  <body>
-    <div class="form">
-      <fw-input
-        id="domain"
-        label="Domin Name"
-        placeholder="Enter your Domain Name"
-        required
-        clear-input
-        style="width: 50%"
-      >
-      </fw-input>
-      <fw-input
-        id="api"
-        label="API Key"
-        placeholder="Enter the API Key"
-        required
-        clear-input
-        style="width: 50%"
-      >
-      </fw-input>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+  />
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+  />
+  <link
+  rel="stylesheet"
+  href="https://unpkg.com/@freshworks/crayons@v4/css/crayons-min.css"
+/>
+</head>
+<body>
+<div class='form' id="form">
+  <h3 id="heading1">Freshsales Activities</h3>
+  <!-- <h4 id="heading2">Connect your Freshsales account to get started.</h4>   -->
+  <div  id="inputlabel">
+  <span style="margin-left: 2px; font-style: normal; font-weight: 600; font-size: 12px; line-height: 20px;color:#475867;">Enter your Freshsales domain URL</span>
+  <span style="color: #ff0000;margin:-4px;">*</span></div>
+    <input
+    id="fs_domain"
+    placeholder="Enter value"
+    style="margin-top: 5px;
+    width: 480px;
+    height: 32px;
+    border-radius: 4px;
+    background: #FFFFFF;
+    border: 1px solid #CFD7DF;"
+    ></input><span style="font-style: normal; font-weight: 400; font-size: 12px; line-height: 20px;margin-left: 2px;margin-top: 4px;color: #475867;">Example:https://acme.myfreshworks.com/</span> 
+    <div  id="inputlabel" style="margin-top: 20px;">
+      <span style="margin-left: 2px; font-style: normal; font-weight: 600; font-size: 12px; line-height: 20px;color:#475867;">API Authentication Key</span>
+      <span style="color: #ff0000;margin:-3px;">*</span></div>
+    <input
+    placeholder="Enter value"
+    id="fs_key"
+    style="margin-top:5px;
+    width: 480px;
+    height: 32px;
+    background: #FFFFFF;
+    border: 1px solid #CFD7DF;
+    border-radius: 4px;">
+    </input>
+  </div><br>
+  <!-- <div class="inner">
+  <a  id="cancel" data-toggle="modal" data-target="#myModal"style="cursor:pointer;margin-left:10px;" >
+      <fw-icon name="info" id="info_icon" size="8" color="#2c5cc5" style="margin-bottom: 1px;"></fw-icon>&nbsp;
+      Where's my API Key?</a>
+</div> -->
+
+<!-- <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="moderate">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="mode">
+                      <div>
+                        <span style=" display: flex">
+                          <fw-icon name="help" size="19.2px" style="margin-top: 12px;" color="#264966"></fw-icon>
+                          <h4 id="h4" data-target="#myModal">Where's my API Key?</h4></span>
+                      </div>
+                      <div id="content">
+                        <div>
+                          <p>Follow these steps:</p>
+                        </div>
+                        <div>
+                          1.Log in to your Freshsales account<br>
+                          2.Click your profile icon on the top-right corner<br>
+                          3.Click <b>Settings</b><br>
+                          4.Click <b>API SETTINGS</b><br>
+                          5.You'll find the API Key here
+                        </div>
+                      </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer" style="width:510px;height:56px;background-color:#F5F7F9;border-radius: 0px 0px 4px 4px;">
+                    <button type="button" id="cancelit" data-dismiss="modal" style="width: 62px;height: 32px;background: linear-gradient(180deg, #264966 2.56%, #12344D 95.75%);color: #FFFFFF;border-radius: 4px;border:none">Got it</button>
+                    
+                </div>
+            </div>
+        </div>
     </div>
-    <div style="margin-top: 10px">
-      <fw-button color="primary" id="validate" fwclick="userAuth()"
-        >validate</fw-button
-      >
-    </div>
+</div>  -->
+<fw-toast id="type_toast_right" position="top-right"></fw-toast>
+<fw-toast id="type_toast"position="top-right"></fw-toast>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <script src="{{{appclient}}}"></script>
-    <script src="./assets/iparams.js"></script>
-    <script type="text/javascript">
-      var ls = {
-        isValid: false,
-        isFsValid: false,
-      };
 
-      var data = {
-        fs_domain: '#domain',
-        fs_api: '#api',
-        fs_validate: '#validate',
-      };
+<!-- </div> -->
+  <div style="margin-top:20px;margin-left: 10px;">
+  <button id="button" onclick="validate()">Connect</button>
+  <button id="button1" style="width:72px;height:32px;color:#12344D;margin-left: 10px;background: linear-gradient(180deg, #FFFFFF 2.56%, #F5F7F9 95.75%);
+  border: 1px solid #CFD7DF;
+  border-radius: 4px;" color="secondary" onclick="reset()">Cancel</button>
+</div>
 
-      function getInput() {
-        console.log(
-          $(data.fs_domain).val(),
-          'domain',
-          $(data.fs_api).val(),
-          'key'
-        );
-        return {
-          fs_domain: $(data.fs_domain).val(),
-          fs_api: $(data.fs_api).val(),
-        };
-        console.log(
-          $(data.fs_domain).val(),
-          'domain',
-          $(data.fs_api).val(),
-          'key'
-        );
-      }
-
-      function getConfigs(configs) {
-        window.configs = configs;
+<script
+  type="module"
+  src="https://unpkg.com/@freshworks/crayons@v4/dist/crayons/crayons.esm.js"
+></script>
+<script
+  nomodule
+  src="https://unpkg.com/@freshworks/crayons@v4/dist/crayons/crayons.js"
+></script>
+<script src="/path/to/cdn/jquery.min.js"></script>
+<script src="/path/to/jquery.richtext.min.js"></script>
+      <script src="https://static.freshdev.io/fdk/2.0/assets/fresh_client.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script
+        type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/toastify-js"
+      ></script>
+      <script src="./assets/iparams.js"></script>
+        
+<script type= "text/javascript">
+      
+   var ls = {
+          isValid: false,
+          isFsValid: false,
+   };
+   var elements = {
+          button: "#button",
+          fs_domain: "#fs_domain",
+          fs_key: "#fs_key",
+   }
+function getConfigs(configs) {
+  window.configs = configs;
         ls.isFsValid = true;
-        $(data.fs_domain).val(configs.fs_domain);
-        $(data.fs_api).val(configs.fs_api);
-        $(data.fs_validate).trigger('click');
-      }
+        $(elements.fs_domain).val(configs.fs_domain);
+        $(elements.fs_key).val(configs.fs_key);
+        $(elements.button).trigger("click")
+        
+};
 
-      function validate() {
-        let isValid = true;
-        return isValid;
-      }
+function validate() {
+  let isValid = true;
+  console.log(isValid, ls.isFsValid);
+  return isValid && ls.isFsValid;
+  return isValid;
+};
 
-      function postConfigs() {
-        authInfo = getInput();
-        return {
+function postConfigs() {
+  authInfo = getInput();
+  return {
           fs_domain: authInfo.fs_domain,
-          fs_key: authInfo.fs_api,
+          fs_key: authInfo.fs_key,
+  }
+};
+function getInput() {
+
+        return {
+          fs_domain: $(elements.fs_domain).val(),
+          fs_key: $(elements.fs_key).val(),
         };
       }
-    </script>
-  </body>
+
+      async function fsValidation(event) {
+        event.preventDefault();
+        window.authInfo = getInput();
+       console.log(authInfo,"auth values");
+        try {
+              await getauthvalues(authInfo);
+              ls.isFsValid = true;
+        } catch (error) {
+          console.log(error,"error");
+          ls.isFsValid = false;
+        }
+      };
+  
+      
+</script>
+</body>
 </html>
